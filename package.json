@@ -1,0 +1,10 @@
+{
+  "name": "bioinformatics-1",
+  "description": "University of California, San Diego. Finding Hidden Messages in DNA",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-mocha-test": "^0.12.7",
+    "expect.js": "^0.3.1"
+  }
+}
