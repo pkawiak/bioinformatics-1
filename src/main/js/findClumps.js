@@ -9,24 +9,29 @@ module.exports = function (genome, k, L, t) {
     var kMerCount;
     var outOfWindow;
     var result = {};
+    var windowSize = L - k;
+    var length = genome.length - k;
 
-    for (i = 0; i <= genome.length - k; i++) {
-        kMer = genome.substring(i, i + k);
+    for (i = 0; i <= length; i++) {
+        kMer = genome.substr(i, k);
+
         kMersInWindow.push(kMer);
 
-        if (kMersInWindow.length > L) {
+
+        if (kMersInWindow.length > windowSize) {
             outOfWindow = kMersInWindow.shift();
             kMerCounts[outOfWindow]--;
         }
 
-        kMerCount = kMerCounts[kMer] || 0;
-        kMerCount++;
-        kMerCounts[kMer] = kMerCount;
+        if (!result[kMer]) {
+            kMerCount = kMerCounts[kMer] || 0;
+            kMerCount++;
+            kMerCounts[kMer] = kMerCount;
 
-        if (kMerCount >= t) {
-            result[kMer] = true;
+            if (kMerCount >= t) {
+                result[kMer] = true;
+            }
         }
-
     }
 
     return _.keys(result);
